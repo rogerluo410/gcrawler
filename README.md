@@ -49,7 +49,7 @@ Function args definition:
 
     search_as_page:
         Args:
-            keywords (varargs)
+            keywords (varargs): kw1, kw2, kw3, ...
             language (str, optional): Query language. Defaults to nil.
             num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
             start (int, optional): Offset. Defaults to 0.
@@ -69,6 +69,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gcrawler. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/gcrawler/blob/master/CODE_OF_CONDUCT.md).
 
+## Inspiration
+
+gcrawler is greatly inspired by [Python version](https://github.com/howie6879/magic_google) for Ruby.
 
 ## License
 

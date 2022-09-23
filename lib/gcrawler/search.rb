@@ -59,7 +59,7 @@ class GoogleCrawler
 
   # search as page
   # Args:
-  #   keywords (varargs)
+  #   keywords (varargs): kw1, kw2, kw3, ...
   #   language (str, optional): Query language. Defaults to nil.
   #   num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
   #   start (int, optional): Offset. Defaults to 0.
