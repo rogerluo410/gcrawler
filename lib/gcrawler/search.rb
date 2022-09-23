@@ -120,17 +120,3 @@ class GoogleCrawler
     objects.compact
   end
 end
-
-# proxies = [
-#   { ip: '127.0.0.1', port: '7890' }
-# ]
-
-# exclude_hosts = [
-#   'accounts.google.com',
-#   'support.google.com'
-# ]
-
-# a = GoogleCrawler.new(proxies: proxies, exclude_hosts: exclude_hosts)
-
-# # pp a.search_as_page('お肉とチーズの専門店', 'ミートダルマ札幌店')
-# pp a.search_as_object('お肉とチーズの専門店', 'ミートダルマ札幌店', country: 'ja')

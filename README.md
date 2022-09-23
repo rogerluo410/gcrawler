@@ -1,8 +1,6 @@
 # Gcrawler
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gcrawler`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Google search crawler for Ruby version.
 
 ## Installation
 
@@ -22,7 +20,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+    require 'gcrawler'
+
+    proxies = [
+    { ip: '127.0.0.1', port: '7890' }
+    ]
+
+    exclude_hosts = [
+    'accounts.google.com',
+    'support.google.com'
+    ]
+
+    google_crawler = GoogleCrawler.new(proxies: proxies, exclude_hosts: exclude_hosts)
+
+    # Output: Mechanize::Page, see https://github.com/sparklemotion/mechanize
+    pp google_crawler.search_as_page('お肉とチーズの専門店', 'ミートダルマ札幌店')
+
+    # Output: [{text: , url:}, ...]
+    pp google_crawler.search_as_object('お肉とチーズの専門店', 'ミートダルマ札幌店', country: 'ja')
+
+    # Output: ['url1', 'url2', ...]
+    pp google_crawler.search_as_url('お肉とチーズの専門店', 'ミートダルマ札幌店', country: 'ja')
+
+```
+
+Function args definition: 
+
+    search_as_page:
+        Args:
+            keywords (varargs)
+            language (str, optional): Query language. Defaults to nil.
+            num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
+            start (int, optional): Offset. Defaults to 0.
+            country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN
+    
+        Return:
+            Mechanize::Page, see https://github.com/sparklemotion/mechanize
+
 
 ## Development
 
