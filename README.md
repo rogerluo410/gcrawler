@@ -1,6 +1,6 @@
 # Gcrawler
 
-Google search crawler for Ruby version.
+Google search crawler for Ruby version. Crawling each links' text and url by keywords on Google.com.
 
 ## Installation
 
