@@ -43,6 +43,9 @@ Or install it yourself as:
     # Output: ['url1', 'url2', ...]
     pp google_crawler.search_as_url('お肉とチーズの専門店', 'ミートダルマ札幌店', country: 'ja')
 
+    # Get the second page:
+    pp google_crawler.search_as_url('お肉とチーズの専門店', 'ミートダルマ札幌店', country: 'ja', start: 10)
+
 ```
 
 Function args definition: 
