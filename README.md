@@ -1,5 +1,7 @@
 # Gcrawler
 
+[![Gem Version](https://badge.fury.io/rb/gcrawler.svg)](https://badge.fury.io/rb/gcrawler)
+
 Google search crawler for Ruby version. Crawling each links' text and url by keywords on Google.com.
 
 ## Installation

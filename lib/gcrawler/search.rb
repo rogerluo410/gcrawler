@@ -6,7 +6,10 @@
 
 require 'wombat'
 require 'uri'
+require 'logger'
 require_relative './utils'
+
+LOGGER = Logger.new(STDOUT)
 
 # Crawl action
 class Crawler
@@ -27,7 +30,7 @@ class Crawler
     mechanize.set_proxy(*proxy) if proxy.length == 2
     mechanize.user_agent = user_agent
 
-    pp "proxy: #{proxy}, user_agent: #{user_agent}"
+    LOGGER.info "proxy: #{proxy}, user_agent: #{user_agent}"
   end
 end
 
@@ -80,14 +83,14 @@ class GoogleCrawler
     @crawler.query_str(query_str)
 
     seconds = Utils.random_interval_time
-    pp "Crawling query string is #{query_str}, will be crawling after #{seconds} seconds..."
+    LOGGER.info "Crawling query string is #{query_str}, will be crawling after #{seconds} seconds..."
     sleep(seconds)
 
     @crawler.crawl
 
     raise "Fetch on Google failed with code #{@crawler.response_code}" unless @crawler.response_code == 200
 
-    pp 'Crawl on Google successfully...'
+    LOGGER.info 'Crawl on Google successfully...'
   end
 
   private
