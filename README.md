@@ -1,6 +1,7 @@
 # Gcrawler
 
 [![Gem Version](https://badge.fury.io/rb/gcrawler.svg)](https://badge.fury.io/rb/gcrawler)
+[![Coverage Status](https://coveralls.io/repos/github/rogerluo410/gcrawler/badge.svg?branch=master)](https://coveralls.io/github/rogerluo410/gcrawler?branch=master)
 
 Google search crawler for Ruby version. Crawling each links' text and url by keywords on Google.com.
 
