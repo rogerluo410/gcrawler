@@ -47,15 +47,15 @@ class GoogleCrawler
   end
 
   # search as url
-  def search_as_url(*keywords, language: nil, num: nil, country: nil, start: 0)
-    search_as_page(*keywords, language: language, num: num, country: country, start: start)
+  def search_as_url(*keywords, language: nil, num: nil, country: nil, start: 0, pause: 0)
+    search_as_page(*keywords, language: language, num: num, country: country, start: start, pause: pause)
 
     filter_urls
   end
 
   # search as object with keys {'text', 'url'}
-  def search_as_object(*keywords, language: nil, num: nil, country: nil, start: 0)
-    search_as_page(*keywords, language: language, num: num, country: country, start: start)
+  def search_as_object(*keywords, language: nil, num: nil, country: nil, start: 0, pause: 0)
+    search_as_page(*keywords, language: language, num: num, country: country, start: start, pause: pause)
 
     generate_objects
   end
@@ -66,12 +66,14 @@ class GoogleCrawler
   #   language (str, optional): Query language. Defaults to nil.
   #   num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
   #   start (int, optional): Offset. Defaults to 0.
-  #   country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN
+  #   country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN.
+  #   pause (uint, optional): Set crawling delay seconds bwtween two requests. 
+  #                           Too short which may be forbidden by Google crawling monitor. Defaults to nil.
   #
   # Return:
   #   Mechanize::Page, see https://github.com/sparklemotion/mechanize
   #
-  def search_as_page(*keywords, language: nil, num: nil, country: nil, start: 0)
+  def search_as_page(*keywords, language: nil, num: nil, country: nil, start: 0, pause: 0)
     return if keywords.empty?
 
     query_str = "q=#{keywords.join('+')}&btnG=Search&gbv=1&safe=active&start=0"
@@ -82,7 +84,7 @@ class GoogleCrawler
 
     @crawler.query_str(query_str)
 
-    seconds = Utils.random_interval_time
+    seconds = pause.zero? ? Utils.random_interval_time : pause
     LOGGER.info "Crawling query string is #{query_str}, will be crawling after #{seconds} seconds..."
     sleep(seconds)
 

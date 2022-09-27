@@ -26,16 +26,29 @@ Or install it yourself as:
 ```ruby
     require 'gcrawler'
 
+    # Set proxy server, multiple IPs should be much safer than single IP.
     proxies = [
-    { ip: '127.0.0.1', port: '7890' }
+        { ip: '127.0.0.1', port: '7890' },
+        ...
     ]
 
+    # Exclude the hosts from results' links.
     exclude_hosts = [
-    'accounts.google.com',
-    'support.google.com'
+        'accounts.google.com',
+        'support.google.com'
     ]
 
-    google_crawler = GoogleCrawler.new(proxies: proxies, exclude_hosts: exclude_hosts)
+    # Disable to search in the black domains.
+    black_domains = [
+        'www.google.at',
+        'www.google.bf'
+    ]
+
+    google_crawler = GoogleCrawler.new(
+        proxies: proxies, 
+        black_domains: black_domains, 
+        exclude_hosts: exclude_hosts
+    )
 
     # Output: Mechanize::Page, see https://github.com/sparklemotion/mechanize
     pp google_crawler.search_as_page('お肉とチーズの専門店', 'ミートダルマ札幌店')
@@ -51,7 +64,7 @@ Or install it yourself as:
 
 ```
 
-Function args definition: 
+Function Input and Output definition: 
 
     search_as_page:
         Args:
@@ -59,10 +72,43 @@ Function args definition:
             language (str, optional): Query language. Defaults to nil.
             num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
             start (int, optional): Offset. Defaults to 0.
-            country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN
+            country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN.
+            pause (uint, optional): Set crawling delay seconds bwtween two requests. 
+                                    Too short which may be forbidden by Google crawling monitor. 
+                                    Defaults to 0.
     
         Return:
             Mechanize::Page, see https://github.com/sparklemotion/mechanize
+
+  
+    search_as_url:
+        Args:
+            keywords (varargs): kw1, kw2, kw3, ...
+            language (str, optional): Query language. Defaults to nil.
+            num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
+            start (int, optional): Offset. Defaults to 0.
+            country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN.
+            pause (uint, optional): Set crawling delay seconds bwtween two requests. 
+                                    Too short which may be forbidden by Google crawling monitor. 
+                                    Defaults to 0.
+    
+        Return:
+            ['url1', 'url2', ...]
+
+    
+    search_as_object:
+        Args:
+            keywords (varargs): kw1, kw2, kw3, ...
+            language (str, optional): Query language. Defaults to nil.
+            num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
+            start (int, optional): Offset. Defaults to 0.
+            country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN.
+            pause (uint, optional): Set crawling delay seconds bwtween two requests. 
+                                    Too short which may be forbidden by Google crawling monitor. 
+                                    Defaults to 0.
+    
+        Return:
+            [{text: xxx, url: xxx}, ...]
 
 
 ## Development
