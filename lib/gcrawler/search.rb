@@ -67,7 +67,7 @@ class GoogleCrawler
   #   num (uint, optional): Number of results per page(default is 10 per page). Defaults to nil.
   #   start (int, optional): Offset. Defaults to 0.
   #   country (str, optional): Query country, Defaults to None, example: countryCN or cn or CN.
-  #   pause (uint, optional): Set crawling delay seconds bwtween two requests. 
+  #   pause (uint, optional): Set crawling delay seconds between two crawling requests.
   #                           Too short which may be forbidden by Google crawling monitor. Defaults to nil.
   #
   # Return:
